@@ -1,7 +1,13 @@
+import { TabsProvider }  from './TabsContext.js';
+import ControlPanel from './ControlPanel.js';
+import TabList from './TabsList.js';
 
 export default function App() {
     
     return (
-        <h1>hello</h1>
+        <TabsProvider>
+            <ControlPanel />
+            <TabList />
+        </TabsProvider>
     )
 }

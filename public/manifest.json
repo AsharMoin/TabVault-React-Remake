@@ -1,11 +1,20 @@
 {
-  "short_name": "Tab Vault",
-  "name": "Tab Vault - Chrome Extension",
-  "icons": [
-    {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    }
-  ]
+  "author": "asharmoin7768@gmail.com",
+  "manifest_version": 3,
+  "version": "2",
+  "name": "TabVault",
+  "action": {
+    "default_popup": "index.html"
+  },
+  "icons": {
+    "16": "vault_21726.png",
+    "48": "vault_21726.png",
+    "128": "vault_21726.png",
+    "256": "vault_21726.png"
+  },
+  "permissions": [
+    "tabs",
+    "tabGroups"
+  ],
+  "description": "TabVault is designed for effortless tab and tab group management. Seamlessly organize your browsing experience by saving tabs and groups, making it easy to revisit websites and projects."
 }
