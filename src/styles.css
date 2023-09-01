@@ -3,8 +3,8 @@ body {
   padding: 10px;
   font-family: "Poppins", sans-serif;
   box-sizing: border-box;
-  min-width: 400px;
-  max-width: 400px;
+  min-width: 500px;
+  max-width: 500px;
   max-height: 600px;
   background-color: black;
 }
@@ -12,11 +12,11 @@ button {
   display: inline-block;
   color: white;
 }
-.button-interface {
-  display: flex;
-  justify-content: space-between;
+.button-container {
+display: flex;
+align-items: center;
 }
-.custom-url {
+.url-input-field {
   display: block;
   background-color: #292929;
   box-sizing: border-box;
@@ -27,13 +27,16 @@ button {
   border-radius: 4px;
   text-indent: 10px;
 }
+.url-input-field.error{
+  border: 2px solid #FF6347;
+}
 .delete-item-btn {
   right: 10px;
   position: absolute;
-  width: auto; /* Let the button width adjust to the content */
+  width: auto;
   height: auto;
   font-size: x-small;
-  line-height: normal; /* Reset the line-height if it has been modified elsewhere */
+  line-height: normal;
   vertical-align: middle;
   cursor: pointer;
   border: none;
@@ -42,14 +45,18 @@ button {
   color: white;
   z-index: 10;
 }
-.custom-btn{
+.action-button{
+  margin-left: 20px;
   background: linear-gradient(to bottom right, #dc143c, #00008b);
   padding: 5px 20px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
 }
-.tabs-in-list {
+.action-save-button {
+  margin-left: 0px; 
+}
+.tab-list-item{
   font-size: small;
   padding: 10px 0;
   position: relative;
@@ -60,7 +67,7 @@ button {
   cursor: pointer;
 }
 a,
-.list-container {
+.tab-list-container {
   word-wrap: break-word;
   overflow-x: hidden;
   overflow-y: scroll;
@@ -73,35 +80,63 @@ a,
   line-height: 20px;
   max-height: 300px;
 }
+.animated-icon {
+  margin-left: 20px;
+  height: 20px;
+  width: 20px;
+}
+
+@keyframes combinedAnimation {
+  0%, 100% { transform: translateX(100%) rotateY(0) rotateX(0); opacity: 0; }
+  10% { transform: translateX(0) rotateY(0) rotateX(0); opacity: 1; }
+  25% { transform: translateX(0) rotateY(180deg); opacity: 1; }
+  50% { transform: translateX(0) rotateY(180deg) rotateX(180deg); opacity: 1; }
+  75% { transform: translateX(0) rotateY(0) rotateX(180deg); opacity: 1; }
+  90%, 100% { transform: translateX(-100%) rotateY(0) rotateX(180deg); opacity: 0; }
+}
+
+.animated-icon {
+  animation: combinedAnimation 7s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+.pulse-icon {
+  animation: pulse 2s infinite;
+}
 
 /* Customize the scrollbar track (background) */
 ::-webkit-scrollbar {
-  width: 12px; /* Width of the scrollbar */
+  width: 12px;
 }
 
 /* Customize the scrollbar thumb (the draggable handle) */
 ::-webkit-scrollbar-thumb {
-  background-color: #888; /* Color of the thumb */
-  border-radius: 6px; /* Rounded corners for the thumb */
+  background-color: #888;
+  border-radius: 6px;
 }
 
 /* Customize the scrollbar thumb on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #555; /* Color of the thumb on hover */
+  background-color: #555;
 }
 
 /* Customize the scrollbar track when scrollbar is actively being dragged */
 ::-webkit-scrollbar-thumb:active {
-  background-color: #2c2c2c; /* Color of the thumb when active */
+  background-color: #2c2c2c; 
 }
 
 /* Customize the scrollbar track when the scrollbar is in the "track" area (not on the thumb) */
 ::-webkit-scrollbar-track {
-  background-color: #363636; /* Color of the track area */
-  border-radius: 10px; /* Rounded corners for the track area */
+  background-color: #363636;
+  border-radius: 10px;
 }
 
 /* Customize the scrollbar corner (when both horizontal and vertical scrollbars are present) */
 ::-webkit-scrollbar-corner {
-  background-color: #f2f2f2; /* Color of the corner */
+  background-color: #f2f2f2; 
 }

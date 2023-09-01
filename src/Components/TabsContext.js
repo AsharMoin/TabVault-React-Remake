@@ -1,20 +1,23 @@
 import { createContext, useContext, useReducer, useEffect} from "react";
 
+// Create context for tabs and dispatch
 const TabsContext = createContext(null)
 
 const TabsDispatchContext = createContext(null)
 
+// Provider component for tabs and dispatch
 export function TabsProvider({ children }) {
     const [tabs, dispatch] = useReducer(tabsReducer, [], () => {
         const localData = localStorage.getItem("Data");
         return localData ? JSON.parse(localData) : [];
     });
 
+    // useEffect hook to update local storage whenever the tabs change.
     useEffect(() => {
         localStorage.setItem("Data", JSON.stringify(tabs));
     }, [tabs]);
 
-
+    // Provide tabs and dispatch to children components
     return (
         <TabsContext.Provider value={tabs}>
             <TabsDispatchContext.Provider value={dispatch}>
@@ -25,14 +28,17 @@ export function TabsProvider({ children }) {
 
 }
 
+// Custom hook to use the tabs context
 export function useTabs() {
     return useContext(TabsContext)
 }
 
+// Custom hook to use the dispatch context
 export function useDispatch() {
     return useContext(TabsDispatchContext)
 }
 
+// Reducer function to handle different actions on the tabs
 export function tabsReducer(tabs, action) {
     switch (action.type) {
         case 'added-url': {
@@ -41,7 +47,7 @@ export function tabsReducer(tabs, action) {
                 title: action.title,
                 url: "https://www.google.com/search?q=" + encodeURIComponent(action.url),
                 favIconUrl: action.favIconUrl ? action.favIconUrl : "https://img.icons8.com/?size=512&id=1349&format=png",
-                color: "#888"
+                color: "#f2f2f2"
             };
             return [newTab, ...tabs];
         }
@@ -51,7 +57,7 @@ export function tabsReducer(tabs, action) {
                 title: action.title,
                 url: action.url,
                 favIconUrl: action.favIconUrl ? action.favIconUrl : "https://img.icons8.com/?size=512&id=1349&format=png",
-                color: "#888"
+                color: "#f2f2f2"
             };
             return [newTab, ...tabs];
         }

@@ -1,5 +1,7 @@
+// Function to get the next id based on the existing tab list
 const getNextId = (tabList) => tabList.length > 0 ? Math.max(...tabList.map(tab => tab.id)) + 1 : 0;
 
+// Function to handle adding a new tab
 export const handleAddTab = (userInput, dispatch, tabList) => {
     dispatch({
         type: 'added-url',
@@ -10,6 +12,7 @@ export const handleAddTab = (userInput, dispatch, tabList) => {
     });
 };
 
+// Function to handle saving the current tab
 export const handleSaveTab = async (tabList, dispatch) => {
     let queryOptions = { active: true, currentWindow: true };
     try {
@@ -31,37 +34,52 @@ export const handleSaveTab = async (tabList, dispatch) => {
     }
 };
 
+// Function to handle saving the current tab group
 export const handleSaveGroup = async (tabList, dispatch) => {
     try {
         let tabGroup = await chrome.tabGroups.query({ windowId: chrome.windows.WINDOW_ID_CURRENT })
+        let updatedTabList = [...tabList]
+        if (tabGroup.length === 0) {
+            throw new Error("No Active Groups")
+        }
+        if (tabGroup.every(group => tabList.some(groupFromList => groupFromList.title === (group.title === '' ? "Untitled Group" : group.title) + " (Group)"))) {
+            throw new Error("Cannot Save Repeat Groups");
+        }
         for (const group of tabGroup) {
-            if (tabList.some(groupFromList => groupFromList.title === group.title + " (Group)")) {
+            if (tabList.some(groupFromList => groupFromList.title === (group.title === '' ? "Untitled Group" : group.title) + " (Group)")) {
                 continue;
             } else {
                 let tabs = await chrome.tabs.query({ groupId: group.id })
-                dispatch({
-                    type: 'groupAdd',
-                    id: getNextId(tabList),
+                const newGroup = {
+                    id: getNextId(updatedTabList),
                     title: group.title,
                     color: group.color,
                     url: tabs
+                }
+                updatedTabList.push(newGroup);
+                dispatch({
+                    type: 'groupAdd',
+                    ...newGroup
                 })
             }
         }
+        return "Success"
     } catch (error) {
-        return "Could Not Save Group"
+        return error
     }
 }
 
+// Function to handle deleting all tabs
 export const handleDelete = (dispatch) => {
     dispatch({
         type: 'delete-all'
     })
 }
 
-export const handleRepeat = (userInput, dispatch, tabList) => {
-    if (tabList.some(tab => tab.title === userInput) || userInput === "") {
-        return "Cannot Save Repeat Tabs or Empty URL"
+// Function to handle repeating the same tab
+export const handleRepeat = async (userInput, dispatch, tabList) => {
+    if (tabList.some(tab => tab.title === userInput.trim()) || userInput === "") {
+        return new Error("Cannot Save Repeat Tabs or Empty URL")
     } else {
         handleAddTab(userInput, dispatch, tabList)
         return "Success"

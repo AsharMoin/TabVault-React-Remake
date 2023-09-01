@@ -2,6 +2,8 @@ import { useTabs, useDispatch } from './TabsContext';
 
 export default function TabList() {
     const tabs = useTabs()
+    console.log(tabs)
+    // Map each tab to either a group of tabs or a single tab
     const tabList = tabs.map(tab => {
         if (Array.isArray(tab.url)) {
             return (
@@ -28,7 +30,7 @@ export default function TabList() {
         }
     });
     return (
-        <ul className='list-container'>
+        <ul className='tab-list-container'>
             {tabList}
         </ul>
     )
@@ -36,9 +38,9 @@ export default function TabList() {
 function Item({ children, tab, onClick }) {
     const dispatch = useDispatch()
     return (
-        <li className='tabs-in-list' key={tab.id} onClick={onClick} style={{ color: tab.color }}>
-            <img style={{ height: "15px", width: "15px", margin: "0px 10px" }} src={tab.favIconUrl} />
-            {children}
+        <li className='tab-list-item' key={tab.id} style={{ color: tab.color }}>
+            <img style={{ height: "15px", width: "15px", margin: "0px 10px" }} src={tab.favIconUrl} className='pulse-icon' />
+            <span onClick={onClick}>{children}</span>
             <button
                 className='delete-item-btn'
                 onClick={() => dispatch({
