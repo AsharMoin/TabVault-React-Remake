@@ -1,6 +1,6 @@
 # TabVault (React Remake)
 
-![User Interface Image](<img width="248" alt="image" src="https://github.com/AsharMoin/TabVault-React-Remake/assets/132712315/f59d58e4-98bd-4530-a7fc-4b84c8492017">)
+![User Interface Image](https://github.com/AsharMoin/TabVault-React-Remake/assets/132712315/f59d58e4-98bd-4530-a7fc-4b84c8492017)
 
 ## Table of Contents
 
