@@ -46,7 +46,7 @@ export function tabsReducer(tabs, action) {
                 id: action.id,
                 title: action.title,
                 url: "https://www.google.com/search?q=" + encodeURIComponent(action.url),
-                favIconUrl: action.favIconUrl ? action.favIconUrl : "https://img.icons8.com/?size=512&id=1349&format=png",
+                favIconUrl: action.favIconUrl ? action.favIconUrl : "https://img.icons8.com/?size=512&id=63807&format=png",
                 color: "#f2f2f2"
             };
             return [newTab, ...tabs];
@@ -56,7 +56,7 @@ export function tabsReducer(tabs, action) {
                 id: action.id,
                 title: action.title,
                 url: action.url,
-                favIconUrl: action.favIconUrl ? action.favIconUrl : "https://img.icons8.com/?size=512&id=1349&format=png",
+                favIconUrl: action.favIconUrl ? action.favIconUrl : "https://img.icons8.com/?size=512&id=63807&format=png",
                 color: "#f2f2f2"
             };
             return [newTab, ...tabs];
