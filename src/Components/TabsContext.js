@@ -61,6 +61,18 @@ export function tabsReducer(tabs, action) {
             };
             return [newTab, ...tabs];
         }
+        case 'edit-name': { 
+            return tabs.map(t => {
+                if (t.id === action.id) {
+                  return {
+                    ...t,
+                    title:action.title
+                  }
+                } else {
+                  return t;
+                }
+              });
+        }
         case 'delete-all': {
             localStorage.removeItem('Data');
             return [];

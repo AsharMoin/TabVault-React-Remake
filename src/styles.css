@@ -30,6 +30,7 @@ align-items: center;
 .url-input-field.error{
   border: 2px solid #FF6347;
 }
+.set-item-btn,
 .delete-item-btn {
   right: 10px;
   position: absolute;
@@ -44,6 +45,9 @@ align-items: center;
   background-color: transparent;
   color: white;
   z-index: 10;
+}
+.set-item-btn {
+  right: 30px;
 }
 .action-button{
   margin-left: 20px;

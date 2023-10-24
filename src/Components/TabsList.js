@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useTabs, useDispatch } from './TabsContext';
 
 export default function TabList() {
@@ -8,6 +9,7 @@ export default function TabList() {
         if (Array.isArray(tab.url)) {
             return (
                 <Item
+                    key = {tab.id}
                     tab={tab}
                     onClick={(event) => {
                         event.stopPropagation()
@@ -22,6 +24,7 @@ export default function TabList() {
         } else {
             return (
                 <Item
+                    key = {tab.id}
                     tab={tab}
                 >
                     <a target='_blank' rel="noreferrer" href={tab.url} style={{ color: tab.color }}>{tab.title}</a>
@@ -37,10 +40,60 @@ export default function TabList() {
 }
 function Item({ children, tab, onClick }) {
     const dispatch = useDispatch()
+    const [isEditing, setIsEditing] = useState(false)
+    let tabTitle
+
+    const handleDispatch = (value) => {
+        dispatch({
+            type: 'edit-name',
+            id: tab.id,
+            title: value
+        })
+    }
+    const handleKeyDown = (e) => {
+        if (e.key == 'Enter') {
+            handleDispatch(e.target.value)
+            setIsEditing(false)
+        }
+    }
+    const handleInputFocus = (e) => {
+        e.target.select()
+    }
+
+    if(isEditing) {
+        tabTitle = (
+            <>
+                <input
+                    value={tab.title}
+                    onChange={(e) => handleDispatch(e.target.value)}
+                    onKeyDown={handleKeyDown}
+                    onFocus={handleInputFocus}
+                />
+                <button
+                    className='set-item-btn' 
+                    onClick={() => setIsEditing(false)}
+                >
+                    🖊
+                </button>
+            </>
+        )
+    } else {
+        tabTitle = (
+            <>
+                <span onClick={onClick}>{children}</span>
+                <button 
+                    className='set-item-btn'
+                    onClick={() => setIsEditing(true)}
+                >
+                    🖊
+                </button>
+            </>
+        )
+    }
     return (
         <li className='tab-list-item' key={tab.id} style={{ color: tab.color }}>
             <img style={{ height: "15px", width: "15px", margin: "0px 10px" }} src={tab.favIconUrl} className='pulse-icon' />
-            <span onClick={onClick}>{children}</span>
+            {tabTitle}
             <button
                 className='delete-item-btn'
                 onClick={() => dispatch({

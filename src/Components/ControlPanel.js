@@ -77,7 +77,7 @@ export default function ControlPanel() {
                     type='delete'
                     onClick={async () => handleDelete(dispatch)}
                 >
-                    Delete
+                    Clear
                 </Button>
                 <Button
                     type="tab"
