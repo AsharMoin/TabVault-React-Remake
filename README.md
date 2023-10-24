@@ -29,6 +29,8 @@ Welcome to TabVault, your one-stop solution for managing your browser tabs and U
 
 -Save Tab Groups: Organize your tabs into groups. TabVault allows you to save entire groups of tabs, so you can easily pick up where you left off or switch between different tasks.
 
+-Edit Tab/Tab group names: Edit your vault by renaming tabs and groups, allowing you to designate more relevant names with the click of a button. 
+
 ## Contributing
 
 Contributions to this project are welcome! Feel free to submit issues and pull requests to help improve the extension.
