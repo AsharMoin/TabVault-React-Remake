@@ -27,7 +27,15 @@ export default function TabList() {
                     key = {tab.id}
                     tab={tab}
                 >
-                    <a target='_blank' rel="noreferrer" href={tab.url} style={{ color: tab.color }}>{tab.title}</a>
+                    <a 
+                        className='tab-link'
+                        target='_blank' 
+                        rel="noreferrer" 
+                        href={tab.url} 
+                        style={{ color: tab.color }}
+                    >
+                        {tab.title}
+                    </a>
                 </Item>
             );
         }
@@ -80,7 +88,12 @@ function Item({ children, tab, onClick }) {
     } else {
         tabTitle = (
             <>
-                <span onClick={onClick}>{children}</span>
+                <span 
+                    onClick={onClick}
+                    className='tab-text'
+                >
+                    {children}
+                </span>
                 <button 
                     className='set-item-btn'
                     onClick={() => setIsEditing(true)}
