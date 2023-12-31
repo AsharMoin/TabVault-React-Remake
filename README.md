@@ -12,7 +12,7 @@
 
 ## Introduction
 
-Welcome to TabVault, your one-stop solution for managing your browser tabs and URLs with ease and efficiency. In the digital age, we often find ourselves drowned in a sea of tabs and URLs that we need to keep track of. TabVault is designed to streamline your browsing experience, helping you organize your digital space, so you can focus on what matters most.
+Committed to constantly improving, Tabvault is now better than ever thanks to React.js! Welcome to TabVault, your one-stop solution for managing your browser tabs and URLs with ease and efficiency. In the digital age, we often find ourselves drowned in a sea of tabs and URLs that we need to keep track of. TabVault is designed to streamline your browsing experience, helping you organize your digital space, so you can focus on what matters most.
 
 ### Installation
 
