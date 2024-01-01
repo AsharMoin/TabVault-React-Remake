@@ -1,4 +1,5 @@
 # TabVault (React Remake)
+TabVault, a React-powered browser extension, revolutionizes tab and URL management, providing users with an enhanced and organized digital space. With features like saving custom URLs, managing tab groups, and easy installation, TabVault offers a seamless and efficient browsing experience.
 
 ![User Interface Image](https://github.com/AsharMoin/TabVault-React-Remake/assets/132712315/f59d58e4-98bd-4530-a7fc-4b84c8492017)
 
